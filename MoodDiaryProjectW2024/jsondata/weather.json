@@ -1,0 +1,9 @@
+﻿{
+  "WeatherId": 4,
+  "WeatherTemperature": -1,
+  "WeatherSun": "False",
+  "WeatherClouds":5,
+  "WeatherPrecip":"True",
+  "WeatherDay":"2024-10-20",
+  "DiaryId": 6
+}

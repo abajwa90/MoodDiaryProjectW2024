@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MoodDiaryProjectW2024.Models.WeatherDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach (var Weather in Model)
+{
+    <h2><a href="/Weather/Details/@Weather.WeatherId"></a>@Weather.WeatherDay</h2>
+    <div>Temperature: @Weather.WeatherTemperature</div>
+    <div>Clouds: @Weather.WeatherClouds</div>
+    <div>Sun: @Weather.WeatherSun</div>
+    <div>Precipitation: @Weather.WeatherPrecip</div>
+}

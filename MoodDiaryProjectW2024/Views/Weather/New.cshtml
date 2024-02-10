@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add Mood</h2>
+<form action="/Diary/Create" method="POST">
+    <div>
+        <label>Day:</label> <input name="WeatherDay" />
+        <label>Temperature:</label> <input name="WeatherTemperature" />
+        <label>Sun:</label> <input name="WeatherSun" />
+        <label>Precipitation:</label><input name="WeatherPrecip" />
+        <label>Clouds:</label><input name="WeatherClouds" />
+    </div>
+    <div>
+        <input type="submit" value="Add Weather" />
+    </div>
+</form>

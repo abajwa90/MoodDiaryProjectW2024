@@ -1,0 +1,11 @@
+﻿@model IEnumerable<MoodDiaryProjectW2024.Models.DiaryDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach (var Diary in Model)
+            {
+                <h2><a href="/Diary/Details/@Diary.DiaryId"></a>@Diary.DiaryName</h2>
+                <div>time: @Diary.DiaryCreation</div>
+            }

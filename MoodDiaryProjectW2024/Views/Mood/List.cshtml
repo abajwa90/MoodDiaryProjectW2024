@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MoodDiaryProjectW2024.Models.MoodDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach (var Mood in Model)
+{
+    <h2><a href="/Mood/Details/@Mood.MoodId"></a>@Mood.MoodNum</h2>
+    <div>Mood Input Day: @Mood.MoodDay</div>
+    <div>Diary: @Mood.DiaryId</div>
+}

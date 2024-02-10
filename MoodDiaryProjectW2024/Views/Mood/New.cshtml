@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add Mood</h2>
+<form action="/Mood/Create" method="POST">
+    <div>
+        <label>Mood:</label> <input name="MoodNum" />
+        <label>Day:</label> <input name="MoodDay" />
+    </div>
+    <div>
+        <input type="submit" value="Add Mood" />
+    </div>
+</form>
