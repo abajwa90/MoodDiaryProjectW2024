@@ -18,6 +18,18 @@ namespace MoodDiaryProjectW2024
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "DiaryDetails",
+                url: "Diary/Details/{id}",
+                defaults: new { controller = "Diary", action = "Details", id = UrlParameter.Optional }
+            );
+
+            //routes.MapRoute(
+                //name: "CreateDiary",
+                //url: "Diary/Create",
+                //defaults: new { controller = "Diary", action = "Create", id = UrlParameter.Optional }
+            //);
         }
     }
 }

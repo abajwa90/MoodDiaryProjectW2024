@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Add Diary";
+}
+
+<h2>Add Mood</h2>
+
+<form action="/Mood/Create" method="POST">
+    <div class="mb-3">
+        <label for="MoodNum" class="form-label">Mood Rating</label>
+        <input type="text" class="form-control" id="MoodNum" name="MoodNum">
+    </div>
+    <div class="mb-3">
+        <label for="DiaryId" class="form-label">Diary ID</label>
+        <input type="number" class="form-control" id="DiaryId" name="DiaryId">
+    </div>
+    <div class="mb-3">
+        <label for="Date" class="form-label">Todays Date</label>
+        <input type="date" class="form-control" id="Date" name="Date">
+    </div>
+    <div class="d-flex align-items-center gap-4">
+        <a href="/Diary/List" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

@@ -3,9 +3,21 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
-@foreach (var Diary in Model)
-            {
-                <h2><a href="/Diary/Details/@Diary.DiaryId"></a>@Diary.DiaryName</h2>
-                <div>time: @Diary.DiaryCreation</div>
-            }
+<div class="container">
+    <h2 style="color:darkorchid">Diary List</h2>
+    <h4>This page display diaries and their corresponding timestamps and average mood and weather data.</h4>
+
+    @foreach (var Diary in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><a href="/Diary/Details/@Diary.DiaryId">@Diary.DiaryName</a></h5>
+                <p class="card-text">Time: @Diary.DiaryCreation</p>
+                <p class="card-text">Average Mood: @Diary.DiaryMood</p>
+                <p class="card-text">Average Weather: @Diary.DiaryWeather</p>
+                <p class="card-text">Diary Notes: @Diary.DiaryNotes</p>
+
+            </div>
+        </div>
+    }
+</div>

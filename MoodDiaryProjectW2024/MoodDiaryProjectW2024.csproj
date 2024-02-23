@@ -205,13 +205,25 @@
     <Compile Include="Migrations\202402080201416_weathers.designer.cs">
       <DependentUpon>202402080201416_weathers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202402080340299_mooddiary.cs" />
-    <Compile Include="Migrations\202402080340299_mooddiary.designer.cs">
-      <DependentUpon>202402080340299_mooddiary.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202402080347155_weatherdiary.cs" />
     <Compile Include="Migrations\202402080347155_weatherdiary.designer.cs">
       <DependentUpon>202402080347155_weatherdiary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402220424469_diarymood.cs" />
+    <Compile Include="Migrations\202402220424469_diarymood.designer.cs">
+      <DependentUpon>202402220424469_diarymood.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402220608377_diaryweather.cs" />
+    <Compile Include="Migrations\202402220608377_diaryweather.designer.cs">
+      <DependentUpon>202402220608377_diaryweather.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402230522387_datetime-update.cs" />
+    <Compile Include="Migrations\202402230522387_datetime-update.designer.cs">
+      <DependentUpon>202402230522387_datetime-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402230737123_diarynotes.cs" />
+    <Compile Include="Migrations\202402230737123_diarynotes.designer.cs">
+      <DependentUpon>202402230737123_diarynotes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -299,7 +311,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Diary\List.cshtml" />
     <Content Include="Views\Diary\Details.cshtml" />
-    <Content Include="Views\Diary\New.cshtml" />
     <Content Include="Views\Diary\Error.cshtml" />
     <Content Include="Views\Mood\List.cshtml" />
     <Content Include="Views\Mood\New.cshtml" />
@@ -309,6 +320,10 @@
     <Content Include="Views\Weather\List.cshtml" />
     <Content Include="Views\Weather\Details.cshtml" />
     <Content Include="Views\Weather\New.cshtml" />
+    <Content Include="Views\Diary\Edit.cshtml" />
+    <Content Include="Views\Diary\Add.cshtml" />
+    <Content Include="Views\Diary\ConfirmDelete.cshtml" />
+    <Content Include="Views\Mood\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -350,11 +365,20 @@
     <EmbeddedResource Include="Migrations\202402080201416_weathers.resx">
       <DependentUpon>202402080201416_weathers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202402080340299_mooddiary.resx">
-      <DependentUpon>202402080340299_mooddiary.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402080347155_weatherdiary.resx">
       <DependentUpon>202402080347155_weatherdiary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402220424469_diarymood.resx">
+      <DependentUpon>202402220424469_diarymood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402220608377_diaryweather.resx">
+      <DependentUpon>202402220608377_diaryweather.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402230522387_datetime-update.resx">
+      <DependentUpon>202402230522387_datetime-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402230737123_diarynotes.resx">
+      <DependentUpon>202402230737123_diarynotes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

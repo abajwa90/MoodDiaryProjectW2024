@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
+using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
+using System.Diagnostics;
 using MoodDiaryProjectW2024.Models;
-using Microsoft.Ajax.Utilities;
 using System.Web.Caching;
-using System.Runtime.CompilerServices;
+using Microsoft.Ajax.Utilities;
+using System.Web.Script.Serialization;
+using System.Data.Entity.Core.Metadata.Edm;
+using MoodDiaryProjectW2024.Migrations;
 
 namespace MoodDiaryProjectW2024.Controllers
 {
@@ -25,7 +21,7 @@ namespace MoodDiaryProjectW2024.Controllers
         static MoodController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44381/api/MoodData/");
+            client.BaseAddress = new Uri("https://localhost:44381/api/");
         }
         // GET: Mood/List
         public ActionResult List()
@@ -33,7 +29,7 @@ namespace MoodDiaryProjectW2024.Controllers
             //objective: communicate with mood data api to retrieve list of moods
             //curl https://localhost:44381/api/DiaryData/ListMoods
 
-            string url = "ListMoods";
+            string url = "MoodData/ListMoods";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response code is ");
@@ -51,7 +47,7 @@ namespace MoodDiaryProjectW2024.Controllers
             //objective: communicate with mood data api to retrieve list of moods
             //curl https://localhost:44381/api/MoodData/FindMood/{id)
 
-            string url = "https://localhost:44381/api/MoodData/FindMood/" + id;
+            string url = "MoodData/Details/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response code is ");
@@ -68,9 +64,15 @@ namespace MoodDiaryProjectW2024.Controllers
         {
             return View();
         }
-
-        // GET: Mood/New
+        
+     
         public ActionResult New()
+        {
+            return View();
+        }
+
+        // GET: Mood/Add
+        public ActionResult Add()
         {
             return View();
         }
@@ -83,7 +85,7 @@ namespace MoodDiaryProjectW2024.Controllers
             Debug.WriteLine(Mood.MoodDay);
             //objective: add new mood into sytem using API
             //curl -H "Content-type: application/json" -d https://localhost:44381/api/MoodData/
-            string url = "AddMood";
+            string url = "MoodData/AddMood";
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
             string jsonpayload = jss.Serialize(Mood);
@@ -106,7 +108,7 @@ namespace MoodDiaryProjectW2024.Controllers
         // GET: Mood/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "FindMood/" + id;
+            string url = "MoodData/FindMood/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result; ;
 
             MoodDto selectedmood = response.Content.ReadAsAsync<MoodDto>().Result;
@@ -124,7 +126,7 @@ namespace MoodDiaryProjectW2024.Controllers
                 Debug.WriteLine(Mood.MoodDay);
                 Debug.WriteLine(Mood.DiaryId);
 
-                string url = "UpdateMood/" + id;
+                string url = "MoodData/UpdateMood/" + id;
                 JavaScriptSerializer jss = new JavaScriptSerializer();
                 string jsonpayload = jss.Serialize(Mood);
 
@@ -139,26 +141,33 @@ namespace MoodDiaryProjectW2024.Controllers
             }
         }
 
-        // GET: Diary/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Mood/Delete/4
+        public ActionResult ConfirmDelete(int id)
         {
-            return View();
+            string url = "MoodData/FindDiary/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            MoodDto selectedMood = response.Content.ReadAsAsync<MoodDto>().Result;
+            return View(selectedMood);
         }
 
-        // POST: Diary/Delete/5
-        [System.Web.Http.HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: Diary/Delete/4
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "MoodData/DeleteMood/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
             }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
         }
     }
 }

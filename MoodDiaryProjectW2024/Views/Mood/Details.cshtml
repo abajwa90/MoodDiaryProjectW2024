@@ -1,9 +1,20 @@
 ﻿@model MoodDiaryProjectW2024.Models.MoodDto
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Details";
 }
+<h2>Mood Details</h2>
 
-<a href="/Mood/"></a>
-<h2>@Model.MoodNum</h2>
-<div>Day Added: @Model.MoodDay</div>
+<div>
+    <a href="/Mood/List">Back</a>
+</div>
+
+<div>
+    <h3>Mood Rating (1-10, 10 is the most positive).</h3>
+</div>
+<form action="/Diary/Edit/@Model.MoodId" method="POST">
+    <input type="submit" class="btn btn-primary" value="Update" />
+</form>
+<form action="/Diary/Delete/@Model.MoodId" method="POST">
+    <input type="submit" class="btn btn-danger" value="Delete" />
+</form>

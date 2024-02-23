@@ -19,7 +19,7 @@ namespace MoodDiaryProjectW2024.Controllers
 
         // GET: api/DiaryData/ListDiaries
         [HttpGet]
-        public IEnumerable<DiaryDto> ListDiaries()
+        public IHttpActionResult ListDiaries()
         {
             List<Diary> Diaries = db.Diaries.ToList();
             List<DiaryDto> DiaryDtos = new List<DiaryDto>();
@@ -28,14 +28,18 @@ namespace MoodDiaryProjectW2024.Controllers
             {
                 DiaryId = d.DiaryId,
                 DiaryName = d.DiaryName,
-                DiaryCreation = d.DiaryCreation
+                DiaryCreation = d.DiaryCreation,
+                DiaryMood = d.DiaryMood,
+                DiaryWeather = d.DiaryWeather,
+                DiaryNotes = d.DiaryNotes
             }));
-            return DiaryDtos;
+            return Ok(DiaryDtos);
         }
         
         // GET: api/DiaryData/FindDiary/7
         [ResponseType(typeof(Diary))]
         [HttpGet]
+        [Route("api/DiaryData/FindDiary/{id}")]
         public IHttpActionResult FindDiary(int id)
         {
             Diary Diary = db.Diaries.Find(id);
@@ -43,7 +47,9 @@ namespace MoodDiaryProjectW2024.Controllers
             {
                 DiaryId = Diary.DiaryId,
                 DiaryName = Diary.DiaryName,
-                DiaryCreation = Diary.DiaryCreation
+                DiaryCreation = Diary.DiaryCreation,
+                //DiaryMood = Diary.DiaryMood,
+                //DiaryWeather = Diary.DiaryWeather
             };
             if (Diary == null)
             {
@@ -56,6 +62,7 @@ namespace MoodDiaryProjectW2024.Controllers
         // POST: api/DiaryData/UpdateDiary/7
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Route("api/DiaryData/UpdateDiary/{id}")]
         public IHttpActionResult UpdateDiary(int id, Diary Diary)
         {
             Debug.WriteLine("Update Diary Error");// help to isolate errors when running api
@@ -95,9 +102,10 @@ namespace MoodDiaryProjectW2024.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/DiaryData/AddDiary
+        // POST: api/DiaryData/CreateDiary
         [ResponseType(typeof(Diary))]
         [HttpPost]
+        [Route("api/DiaryData/AddDiary")]
         public IHttpActionResult AddDiary(Diary Diary)
         {
             if (!ModelState.IsValid)
@@ -114,6 +122,7 @@ namespace MoodDiaryProjectW2024.Controllers
         // POST: api/DiaryData/DeleteDiary/2
         [ResponseType(typeof(Diary))]
         [HttpPost]
+        [Route("api/DiaryData/DeleteDiary/{id}")]
         public IHttpActionResult DeleteDiary(int id)
         {
             Diary Diary = db.Diaries.Find(id);

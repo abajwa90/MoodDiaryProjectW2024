@@ -127,7 +127,7 @@ namespace MoodDiaryProjectW2024.Controllers
 
         // POST: api/WeatherData/DeleteWeather/4
         [ResponseType(typeof(Weather))]
-        [HttpGet]
+        [HttpPost]
         public IHttpActionResult DeleteWeather(int id)
         {
             Weather Weather = db.Weathers.Find(id);

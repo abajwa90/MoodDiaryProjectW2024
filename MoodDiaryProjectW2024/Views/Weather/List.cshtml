@@ -3,12 +3,18 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
-@foreach (var Weather in Model)
-{
-    <h2><a href="/Weather/Details/@Weather.WeatherId"></a>@Weather.WeatherDay</h2>
-    <div>Temperature: @Weather.WeatherTemperature</div>
-    <div>Clouds: @Weather.WeatherClouds</div>
-    <div>Sun: @Weather.WeatherSun</div>
-    <div>Precipitation: @Weather.WeatherPrecip</div>
-}
+<div class="container">
+    <h2 style="color:orangered">Weather List</h2>
+    @foreach (var Weather in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><a href="/Weather/Details/@Weather.WeatherId">@Weather.WeatherDay</a></h5>
+                <div class="card-text">Temperature: @Weather.WeatherTemperature</div>
+                <div class="card-text">Clouds: @Weather.WeatherClouds</div>
+                <div class="card-text">Sun: @Weather.WeatherSun</div>
+                <div class="card-text">Precipitation: @Weather.WeatherPrecip</div>
+            </div>
+        </div>
+    }
+</div>

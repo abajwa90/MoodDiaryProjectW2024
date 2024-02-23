@@ -2,32 +2,26 @@
     ViewBag.Title = "Home Page";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<div class="jumbotron text-center" style="margin-bottom:10px;">
+    <h1 class="display-4">Mood and Weather Logging App</h1>
+    
+    <hr class="my-4">
+    <p>This web app is designed with Entity Framework on the .NET core.</p>
+</div>
 
+<div class="container">
     <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+        <div class="col-md-4">
+            <h2 style="color:darkorchid">Diaries</h2>
+            <p>Users are able to create, list, update, and delete diaries.</p>
+        </div>
+        <div class="col-md-4">
+            <h2 style="color:forestgreen">Mood</h2>
+            <p>Users are able to log their mood, and perform CRUD functions with data.</p>
+        </div>
+        <div class="col-md-4">
+            <h2 style="color:orangered">Weather</h2>
+            <p>Users are able to log weather data, and perform CRUD functions with data.</p>
+        </div>
     </div>
-</main>
+</div>

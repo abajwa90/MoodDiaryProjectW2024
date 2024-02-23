@@ -37,6 +37,8 @@ namespace MoodDiaryProjectW2024.Controllers
         // GET: api/MoodData/FindMood/4
         [ResponseType(typeof(Mood))]
         [HttpGet]
+        [Route("api/MoodData/FindMood/{id}")]
+
         public IHttpActionResult FindMood(int id)
         {
             Mood Mood = db.Moods.Find(id);
@@ -58,6 +60,8 @@ namespace MoodDiaryProjectW2024.Controllers
         // POST: api/MoodData/UpdateMood/2
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Route("api/MoodData/UpdateMood/{id}")]
+
         public IHttpActionResult UpdateMood(int id, Mood Mood)
         {
             Debug.WriteLine("Update Mood Error");// help to isolate errors when running api
@@ -100,6 +104,8 @@ namespace MoodDiaryProjectW2024.Controllers
         // POST: api/MoodData/AddMood
         [ResponseType(typeof(Mood))]
         [HttpPost]
+        [Route("api/MoodData/AddMood")]
+
         public IHttpActionResult AddMood(Mood Mood)
         {
             if (!ModelState.IsValid)
@@ -116,7 +122,9 @@ namespace MoodDiaryProjectW2024.Controllers
 
         // POST: api/MoodData/DeleteMood/3
         [ResponseType(typeof(Mood))]
-        [HttpGet]
+        [HttpPost]
+        [Route("api/MoodData/DeleteMood/{id}")]
+
         public IHttpActionResult DeleteMood(int id)
         {
             Mood Mood = db.Moods.Find(id);

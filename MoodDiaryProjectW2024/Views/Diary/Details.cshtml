@@ -1,9 +1,24 @@
 ﻿@model MoodDiaryProjectW2024.Models.DiaryDto
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Details";
 }
+<h2>Diary Details</h2>
 
-<a href="/Diary/"></a>
-<h2>@Model.DiaryName</h2>
-<div>Created at: @Model.DiaryCreation</div>
+<div>
+    <a href="/Diary/List">Back</a>
+</div>
+
+<div>
+    <h3>@Model.DiaryName</h3>
+    <p>Created at: @Model.DiaryCreation</p>
+    <p>Average Mood: @Model.DiaryMood</p>
+    <p>Average Weather:@Model.DiaryWeather</p>
+    <p>Added Notes:@Model.DiaryNotes </p>
+</div>
+<form action="/Diary/Edit/@Model.DiaryId" method="POST">
+    <input type="submit" class="btn btn-primary" value="Update" />
+</form>
+<form action="/Diary/Delete/@Model.DiaryId" method="POST">
+    <input type="submit" class="btn btn-danger" value="Delete" />
+</form>

@@ -28,6 +28,7 @@ namespace MoodDiaryProjectW2024.Models
         public virtual Diary Diary { get; set; }
     }
 
+
     public class MoodDto
     {
         public int MoodId { get; set; }

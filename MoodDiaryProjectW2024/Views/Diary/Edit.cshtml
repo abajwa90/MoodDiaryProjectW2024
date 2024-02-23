@@ -1,0 +1,22 @@
+﻿﻿@model MoodDiaryProjectW2024.Models.DiaryDto
+@{
+    ViewBag.Title = "Edit Project";
+}
+
+<h2>Edit Diary</h2>
+
+<form action="/Diary/Update/@Model.DiaryId" method="POST">
+    <input type="hidden" name="DiaryId" value="@Model.DiaryId" />
+    <div class="mb-3">
+        <label for="DiaryName" class="form-label">Diary Name</label>
+        <input value="@Model.DiaryName" type="text" class="form-control" id="DiaryName" name="DiaryName">
+    </div>
+    <div class="mb-3">
+        <label for="Notes" class="form-label">Diary Notes</label>
+        <input value="@Model.DiaryNotes" type="text" class="form-control" id="Notes" name="Notes">
+    </div>
+    <div class="d-flex align-items-center gap-4">
+        <a href="/Diary/Details/@Model.DiaryId" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

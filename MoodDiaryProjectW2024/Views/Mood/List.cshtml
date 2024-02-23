@@ -3,10 +3,17 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
-@foreach (var Mood in Model)
-{
-    <h2><a href="/Mood/Details/@Mood.MoodId"></a>@Mood.MoodNum</h2>
-    <div>Mood Input Day: @Mood.MoodDay</div>
-    <div>Diary: @Mood.DiaryId</div>
-}
+<div class="container">
+    <h2 style="color:forestgreen">Mood List</h2>
+    <h4>This page displays singular mood data entries and their corresponding diaries and timestamps.</h4>
+    @foreach (var Mood in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><a href="/Mood/Details/@Mood.MoodId">@Mood.MoodId</a></h5>
+                <div class="card-text">Mood Input Day: @Mood.MoodDay</div>
+                <div class="card-text">Diary: @Mood.DiaryId</div>
+            </div>
+        </div>
+    }
+</div>

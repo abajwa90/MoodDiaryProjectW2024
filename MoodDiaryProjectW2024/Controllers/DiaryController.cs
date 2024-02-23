@@ -9,6 +9,8 @@ using MoodDiaryProjectW2024.Models;
 using System.Web.Caching;
 using Microsoft.Ajax.Utilities;
 using System.Web.Script.Serialization;
+using System.Data.Entity.Core.Metadata.Edm;
+using MoodDiaryProjectW2024.Migrations;
 
 namespace MoodDiaryProjectW2024.Controllers
 {
@@ -19,7 +21,7 @@ namespace MoodDiaryProjectW2024.Controllers
             static DiaryController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44381/api/DiaryData/");
+            client.BaseAddress = new Uri("https://localhost:44381/api/");
         }
         // GET: Diary/List
         public ActionResult List()
@@ -27,7 +29,7 @@ namespace MoodDiaryProjectW2024.Controllers
             //objective: communicate with diary data api to retrieve list of diaries
             //curl https://localhost:44381/api/DiaryData/ListDiaries
 
-            string url = "ListDiaries";
+            string url = "DiaryData/ListDiaries";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response code is ");
@@ -45,19 +47,20 @@ namespace MoodDiaryProjectW2024.Controllers
             //objective: communicate with diary data api to retrieve list of animals
             //curl https://localhost:44381/api/DiaryData/FindDiary/{id)
 
-            string url = "https://localhost:44381/api/DiaryData/FindDiary/"+id;
+            string url = "DiaryData/Details/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response code is ");
             Debug.WriteLine(response.StatusCode);
 
             DiaryDto selectedDiary = response.Content.ReadAsAsync<DiaryDto>().Result;
+        
             Debug.WriteLine("Diary recieved : ");
             Debug.WriteLine(selectedDiary.DiaryName);
             return View(selectedDiary);
         }
 
-        public ActionResult Error()
+        public ActionResult Add()
         {
             return View();
         }
@@ -76,7 +79,7 @@ namespace MoodDiaryProjectW2024.Controllers
             Debug.WriteLine(Diary.DiaryName);
             //objective: add new diary into sytem using API
             //curl -H "Content-type: application/json" -d https://localhost:44381/api/DiaryData/
-            string url = "AddDiary";
+            string url = "DiaryData/AddDiary";
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
             string jsonpayload = jss.Serialize(Diary);
@@ -92,6 +95,10 @@ namespace MoodDiaryProjectW2024.Controllers
             }
             else
             {
+                Debug.WriteLine("Error updating expense. Status code: " + response.StatusCode);
+                string errorMessage = response.Content.ReadAsStringAsync().Result;
+                Debug.WriteLine("Error message from server: " + errorMessage);
+
                 return RedirectToAction("Error");
             }
         }
@@ -99,45 +106,65 @@ namespace MoodDiaryProjectW2024.Controllers
         // GET: Diary/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            string url = "DiaryData/FindDiary/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            DiaryDto selectedDiary = response.Content.ReadAsAsync<DiaryDto>().Result;
+
+            return View(selectedDiary);
         }
         
-        // POST: Diary/Edit/5
+        // POST: Diary/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, Diary Diary)
+            
         {
-            try
-            {
-                // TODO: Add update logic here
+            Debug.WriteLine("the json payload is:");
+            Debug.WriteLine(Diary.DiaryName);
+            //objective: add new diary into sytem using API
+            //curl -H "Content-type: application/json" -d https://localhost:44381/api/DiaryData/
+            string url = "DiaryData/UpdateDiary/" + id;
 
-                return RedirectToAction("Index");
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string jsonpayload = jss.Serialize(Diary);
+
+            Debug.WriteLine(jsonpayload);
+
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;            {
+            
+                return RedirectToAction("Details/" + id);
             }
-            catch
-            {
-                return View();
-            }
+            
         }
 
         // GET: Diary/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult ConfirmDelete(int id)
         {
-            return View();
+            string url = "DiaryData/FindDiary/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            DiaryDto selectedDiary = response.Content.ReadAsAsync<DiaryDto>().Result;
+            return View(selectedDiary);
         }
 
         // POST: Diary/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "DiaryData/DeleteDiary/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
             }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
         }
     }
 }

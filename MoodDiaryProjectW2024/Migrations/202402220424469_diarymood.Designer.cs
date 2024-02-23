@@ -7,13 +7,13 @@ namespace MoodDiaryProjectW2024.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class mooddiary : IMigrationMetadata
+    public sealed partial class diarymood : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(mooddiary));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(diarymood));
         
         string IMigrationMetadata.Id
         {
-            get { return "202402080340299_mooddiary"; }
+            get { return "202402220424469_diarymood"; }
         }
         
         string IMigrationMetadata.Source
