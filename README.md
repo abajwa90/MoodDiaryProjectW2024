@@ -1,7 +1,7 @@
 # Mood Diary
 
 ## Introduction
-An online plant store web app made with Entity Framework on the .NET Core, LINQ, and SQL.
+A web app made with Entity Framework on the .NET Core, LINQ, and SQL.
 
 
 ## Authors
